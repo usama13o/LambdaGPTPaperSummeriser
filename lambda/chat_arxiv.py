@@ -532,7 +532,7 @@ class Reader:
                 text = summary_text
             # chat_conclusion_text = self.chat_conclusion(text=text)
             try:
-                chat_conclusion_text = self.chat_conclusion(text=text)
+                chat_conclus14ion_text = self.chat_conclusion(text=text)
             except Exception as e:
                 print("conclusion_error:", e)
                 exc_type, exc_obj, exc_tb = sys.exc_info()

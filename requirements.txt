@@ -18,3 +18,4 @@ sphinx-markdown-tables
 sphinxemoji
 recommonmark
 sphinx-book-theme
+boto3
