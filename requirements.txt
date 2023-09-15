@@ -19,3 +19,4 @@ sphinxemoji
 recommonmark
 sphinx-book-theme
 boto3
+notion-client
