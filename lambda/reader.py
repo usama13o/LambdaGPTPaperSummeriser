@@ -270,7 +270,7 @@ class Reader:
                     - (2):xxx;\n 
                     - (3):xxx;\n  
                     ....... \n\n     
-                 
+                 8. One paragraph of summary (should start with 'in this paper'): \n\n
                  Be sure to use {} answers (proper nouns need to be marked in English), statements as concise and academic as possible, do not repeat the content of the previous <summary>, the value of the use of the original numbers, be sure to strictly follow the format, the corresponding content output to xxx, in accordance with \n line feed, ....... means fill in according to the actual requirements, if not, you can not write.                 
                  """.format(self.language, self.language)},
         ]
@@ -312,7 +312,6 @@ class Reader:
             {"role": "assistant",
              "content": "This is the title, author, link, abstract and introduction of an English document. I need your help to read and summarize the following questions: " + clip_text},
             {"role": "user", "content": """                 
-                 1. Mark the title of the paper (with Chinese translation)
                  2. list all the authors' names (use English)
                  3. mark the first author's affiliation (output {} translation only)                 
                  4. mark the keywords of this article (use English)
@@ -328,7 +327,8 @@ class Reader:
                  3. Affiliation: xxx\n\n                 
                  4. Keywords: xxx\n\n   
                  5. Urls: xxx or xxx , xxx \n\n      
-                 6. Summary: \n\n
+                 6. bibtex (generate the bibtex citations of this paper): xxx\n\n
+                 7. Summary: \n\n
                     - (1):xxx;\n 
                     - (2):xxx;\n 
                     - (3):xxx;\n  

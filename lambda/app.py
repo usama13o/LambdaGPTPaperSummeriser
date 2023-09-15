@@ -7,7 +7,15 @@ print('Loading function')
 
 s3 = boto3.client('s3')
 
-#test locally
+#test locally - 
+"""
+Need to move to a model that sends the pdf name and finds it in the s3 bucket and adds the summary to the
+notion page for that pdf
+#1 - get the pdf name from the s3 bucket
+#2 - run the summary on the pdf
+#3 - add the summary to the notion page
+
+"""
 def handler(event, context):
     #print("Received event: " + json.dumps(event, indent=2))
 
