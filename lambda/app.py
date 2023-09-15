@@ -11,18 +11,29 @@ s3 = boto3.client('s3')
 def handler(event, context):
     #print("Received event: " + json.dumps(event, indent=2))
 
-    # Get the object from the event and show its content type
+    # Get the latest object uploaded to the bucket
     bucket = event['Records'][0]['s3']['bucket']['name']
-    key = urllib.parse.unquote_plus(event['Records'][0]['s3']['object']['key'], encoding='utf-8')
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket(bucket)
+    latest_obj = None
+    for obj in bucket.objects.all():
+        if not latest_obj or obj.last_modified > latest_obj.last_modified:
+            latest_obj = obj
+
+    # Download the latest object to /tmp
+    key = latest_obj.key
+    print('Downloading {} from bucket {}...'.format(key, bucket.name))
     try:
-        #create dirs if not exits
-        os.makedirs('/tmp/{}'.format(key))
-        #download file
-        s3.download_file(bucket, key, '/tmp/{}'.format(key))
-        chat.chat_paper_main(pdf_path='/tmp/{}'.format(key))
+        s3 = boto3.client('s3')
+        # make sure dirs exist
+        if not os.path.exists('/tmp'):
+            os.makedirs('/tmp')
+            print(os.listdir('./'))
+        s3.download_file(bucket.name, key, '/tmp/{}'.format(key.split('/')[-1]))
+        chat.chat_paper_main(pdf_path='/tmp/{}'.format(key.split('/')[-1]))
         
         return 'Done!'
     except Exception as e:
         print(e)
-        print('Error getting object {} from bucket {}. Make sure they exist and your bucket is in the same region as this function.'.format(key, bucket))
+        print('Error getting object {} from bucket {}. Make sure they exist and your bucket is in the same region as this function.'.format(key, bucket.name))
         raise e

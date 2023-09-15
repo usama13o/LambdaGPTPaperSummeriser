@@ -174,14 +174,14 @@ class Reader:
 
             # # 整合成一个文件，打包保存下来。
             date_str = str(datetime.datetime.now())[:13].replace(' ', '-')
-            export_path = os.path.join(self.root_path, 'export')
-            if not os.path.exists(export_path):
-                os.makedirs(export_path)
-            mode = 'w' if paper_index == 0 else 'a'
-            file_name = os.path.join(export_path,
-                                     date_str + '-' + self.validateTitle(paper.title[:80]) + "." + self.file_format)
-            self.export_to_markdown("\n".join(htmls), file_name=file_name, mode=mode)
-            print("export_path: ", file_name)
+            # export_path = os.path.join(self.root_path, 'export')
+            # if not os.path.exists(export_path):
+                # os.makedirs(export_path)
+            # mode = 'w' if paper_index == 0 else 'a'
+            # file_name = os.path.join(export_path,
+                                    #  date_str + '-' + self.validateTitle(paper.title[:80]) + "." + self.file_format)
+            # self.export_to_markdown("\n".join(htmls), file_name=file_name, mode=mode)
+            # print("export_path: ", file_name)
 
             # NOTION API CALL
             # notion_api.update_latest_page("\n".join(htmls))
@@ -234,7 +234,7 @@ class Reader:
         result = ''
         for choice in response.choices:
             result += choice.message.content
-        print("conclusion_result:\n", result)
+        # print("conclusion_result:\n", result)
         print("prompt_token_used:", response.usage.prompt_tokens,
               "completion_token_used:", response.usage.completion_tokens,
               "total_token_used:", response.usage.total_tokens)
@@ -289,7 +289,7 @@ class Reader:
         result = ''
         for choice in response.choices:
             result += choice.message.content
-        print("method_result:\n", result)
+        # print("method_result:\n", result)
         print("prompt_token_used:", response.usage.prompt_tokens,
               "completion_token_used:", response.usage.completion_tokens,
               "total_token_used:", response.usage.total_tokens)
@@ -353,7 +353,7 @@ class Reader:
         result = ''
         for choice in response.choices:
             result += choice.message.content
-        print("summary_result:\n", result)
+        # print("summary_result:\n", result)
         print("prompt_token_used:", response.usage.prompt_tokens,
               "completion_token_used:", response.usage.completion_tokens,
               "total_token_used:", response.usage.total_tokens)
